@@ -10,6 +10,24 @@ data Dibujo a = Basica a
                | Encimar (Dibujo a) (Dibujo a)
                 deriving (Show, Eq)
 
+rotar :: Dibujo a -> Dibujo a
+rotar d = Rotar d
+
+rotar45 :: Dibujo a -> Dibujo a
+rotar45 d = Rotar45 d
+
+espejar :: Dibujo a -> Dibujo a
+espejar d = Espejar d
+
+apilar :: Float -> Float -> Dibujo a -> Dibujo a -> Dibujo a
+apilar x y new d = Apilar x y new d
+
+juntar :: Float -> Float -> Dibujo a -> Dibujo a -> Dibujo a
+juntar x y new d = Apilar x y new d
+
+encimar :: Dibujo a -> Dibujo a
+encimar d = Encimar d
+
 -- Composición n-veces de una función con sí misma.
 comp :: (a -> a) -> Int -> a -> a
 comp f 0 x = x
@@ -17,10 +35,10 @@ comp f n x = f (comp f (n-1) x)
 
 -- Rotaciones de múltiplos de 90.
 r180 :: Dibujo a -> Dibujo a
-r180 = comp Rotar 2
+r180 d = comp rotar 2 d
 
 r270 :: Dibujo a -> Dibujo a
-r270 = comp Rotar 3
+r270 d = comp rotar 3 d
 
 -- Pone una figura sobre la otra, ambas ocupan el mismo espacio.
 (.-.) :: Dibujo a -> Dibujo a -> Dibujo a
