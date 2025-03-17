@@ -17,10 +17,10 @@ cambiar p f dib = mapDib (\x-> if p x then f x else Basica x) dib
 
 -- Alguna básica satisface el predicado.
 anyDib :: Pred a -> Dibujo a -> Bool
-
+anyDib pred = foldDib pred id id id (\_ _ d1 d2 -> d1 || d2) (\_ _ d1 d2 -> d1 || d2) (\d1 d2 -> d1 || d2)
 -- Todas las básicas satisfacen el predicado.
 allDib :: Pred a -> Dibujo a -> Bool
-
+allDib pred = foldDib pred id id id (\_ _ d1 d2 -> d1 && d2) (\_ _ d1 d2 -> d1 && d2) (\d1 d2 -> d1 && d2)
 
 -- Hay 4 rotaciones seguidas.
 esRot360 :: Pred (Dibujo a)
