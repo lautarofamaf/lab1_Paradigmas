@@ -23,7 +23,7 @@ apilar :: Float -> Float -> Dibujo a -> Dibujo a -> Dibujo a
 apilar = Apilar
 
 juntar :: Float -> Float -> Dibujo a -> Dibujo a -> Dibujo a
-juntar = Apilar
+juntar = Juntar
 
 encimar :: Dibujo a -> Dibujo a -> Dibujo a
 encimar = Encimar
@@ -56,10 +56,10 @@ r270 = comp rotar 3
 
 -- Dadas cuatro dibujos las ubica en los cuatro cuadrantes.
 cuarteto :: Dibujo a -> Dibujo a -> Dibujo a -> Dibujo a -> Dibujo a
-cuarteto a b c d = Apilar 1 1 (Juntar 1 1 a b) (Juntar 1 1 c d)
+cuarteto a b c d = (.-.) 1 1 ((///) 1 1 a b) ((///) 1 1 c d)
 -- Una dibujo repetido con las cuatro rotaciones, superpuestas.
 encimar4 :: Dibujo a -> Dibujo a
-encimar4 d = Encimar d (Encimar (r180 d) (Encimar (Rotar d) (r270 d)))
+encimar4 d = (^^^) d ((^^^) (r180 d) ((^^^) (Rotar d) (r270 d)))
 
 -- Cuadrado con la misma figura rotada i * 90, para i ∈ {0, ..., 3}.
 -- No confundir con encimar4!
