@@ -1,4 +1,4 @@
-module Dibujo where
+module Pred where
 
 import Dibujo
 
@@ -24,6 +24,13 @@ allDib pred = foldDib pred id id id (\_ _ d1 d2 -> d1 && d2) (\_ _ d1 d2 -> d1 &
 
 -- Hay 4 rotaciones seguidas.
 esRot360 :: Pred (Dibujo a)
+esRot360 d = foldDib 0
+                     (\x -> if x < 4 then x+1 else 4)
+                     (\x -> if x == 4 then 4 else 0)
+                     (\x -> if x == 4 then 4 else 0)
+                     (\_ _ x y -> if x == 4 || y == 4 then 4 else 0)
+                     (\_ _ x y -> if x == 4 || y == 4 then 4 else 0)
+                     (\x y -> if x == 4 || y == 4 then 4 else 0) d == 4
 
 -- Hay 2 espejados seguidos.
 esFlip2 :: Pred (Dibujo a)
