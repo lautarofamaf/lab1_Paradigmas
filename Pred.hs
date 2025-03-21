@@ -25,7 +25,7 @@ allDib pred = foldDib pred id id id (\_ _ d1 d2 -> d1 && d2) (\_ _ d1 d2 -> d1 &
 
 -- Hay 4 rotaciones seguidas.
 esRot360 :: Pred (Dibujo a)
-esRot360 d = foldDib 0
+esRot360 d = foldDib (\x -> 0)
                      (\x -> if x < 4 then x+1 else 4)
                      (\x -> if x == 4 then 4 else 0)
                      (\x -> if x == 4 then 4 else 0)
@@ -35,7 +35,7 @@ esRot360 d = foldDib 0
 
 -- Hay 2 espejados seguidos.
 esFlip2 :: Pred (Dibujo a)
-esFlip2 d = foldDib 0
+esFlip2 d = foldDib  (\x -> 0)
                      (\x -> if x == 2 then 2 else 0)
                      (\x -> if x < 2 then x+1 else 2)
                      (\x -> if x == 2 then 2 else 0)
