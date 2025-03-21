@@ -14,8 +14,8 @@ type Pred a = a -> Bool
 -- todos los triángulos.
 -- A REVISAR FUNCION CAMBIAR ERROR DE TIPOS
 cambiar :: Pred a -> (a -> Dibujo a) -> Dibujo a -> Dibujo a
-cambiar p f = mapDib (\x-> if p x then f x else Basica x)
-
+cambiar p f = foldDib (\x-> if p x then f x else Basica x) rotar rotar45 espejar apilar juntar encimar 
+                                             
 -- Alguna básica satisface el predicado.
 anyDib :: Pred a -> Dibujo a -> Bool
 anyDib pred = foldDib pred id id id (\_ _ d1 d2 -> d1 || d2) (\_ _ d1 d2 -> d1 || d2) (\d1 d2 -> d1 || d2)
